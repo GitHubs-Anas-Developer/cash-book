@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { baseUrl } from "../../constant/Url";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // FaEye for eye, FaEyeSlash for eyeOff
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [registerForm, setRegisterForm] = useState({
@@ -12,6 +13,9 @@ function Signup() {
     password: "",
     confirmPassword: "",
   });
+
+  const navigate = useNavigate();
+
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -42,6 +46,8 @@ function Signup() {
     },
     onSuccess: (response) => {
       toast.success(response.message);
+      navigate("/dashboard");
+
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || "Something went wrong!");
