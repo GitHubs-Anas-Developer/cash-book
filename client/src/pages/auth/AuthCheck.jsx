@@ -24,7 +24,7 @@ function AuthCheck({ children }) {
     if (isError) {
       navigate("/login"); // Redirect only when error occurs
     }
-  }, [isError, navigate]);
+  }, [ navigate]);
 
   // Show loading spinner while checking authentication
   if (isLoading) {
