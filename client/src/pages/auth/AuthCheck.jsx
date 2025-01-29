@@ -12,7 +12,7 @@ function AuthCheck({ children }) {
     const checkAuth = async () => {
       try {
         const response = await axios.get(`${baseUrl}/api/auth/profile`, {
-          withCredentials: true, // Ensures cookies (JWT) are sent
+          withCredentials: "include", // Ensures cookies (JWT) are sent
         });
         setIsAuthenticated(true); // User is authenticated
       } catch (error) {
