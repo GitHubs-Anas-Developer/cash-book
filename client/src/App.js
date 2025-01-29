@@ -63,17 +63,15 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* Protected Routes */}
-
-        <Route path="/" element={<Dashboard />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/profile" element={<Profile />} />
         <Route
           path="/*"
           element={
             <AuthCheck>
               <Navbar user={data} />
               <Routes>
-              
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/create-cashbook" element={<Cashbook />} />
                 <Route path="/summary" element={<Summary />} />
                 <Route path="/cash-in" element={<CashIn />} />
