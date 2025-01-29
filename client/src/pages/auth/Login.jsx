@@ -29,7 +29,7 @@ function Login() {
       const response = await axios.post(
         `${baseUrl}/api/auth/login`,
         loginForm,
-        { withCredentials: true }
+        { withCredentials: "include" }
       );
       return response.data;
     },
