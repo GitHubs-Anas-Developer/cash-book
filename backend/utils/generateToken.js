@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const generateToken = (userId, res) => {
   // Generate a JWT with a 15-day expiration
-  const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET , {
     expiresIn: "15d", // JWT token expiration (15 days)
   });
 

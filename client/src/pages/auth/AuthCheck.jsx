@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { baseUrl } from "../../constant/Url";
 import ClipLoader from "react-spinners/ClipLoader"; // Loading spinner
 
@@ -11,15 +10,19 @@ function AuthCheck({ children }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/api/auth/profile`, {
-          withCredentials: "include", // Ensures cookies (JWT) are sent
+        const response = await fetch(`${baseUrl}/api/auth/profile`, {
+          method: "GET",
+          credentials: "include", // Ensures cookies (JWT) are sent
+          headers: { "Content-Type": "application/json" },
         });
+
+        if (!response.ok) {
+          throw new Error("Unauthorized");
+        }
+
         setIsAuthenticated(true); // User is authenticated
       } catch (error) {
-        console.error(
-          "Auth Error:",
-          error.response?.data?.message || "Authentication failed"
-        );
+        console.error("Auth Error:", error.message);
         setIsAuthenticated(false); // Authentication failed
         navigate("/login"); // Redirect to login page
       }
