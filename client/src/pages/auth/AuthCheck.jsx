@@ -1,56 +1,42 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseUrl } from "../../constant/Url";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { baseUrl } from "../../constant/Url";
+import ClipLoader from "react-spinners/ClipLoader"; // Import spinner
 
 function AuthCheck({ children }) {
   const navigate = useNavigate();
 
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["Auth"],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["profile"],
     queryFn: async () => {
-      const response = await axios.get(`${baseUrl}/authCheck`, {
-        withCredentials: true,
+      const response = await axios.get(`${baseUrl}/api/auth/profile`, {
+        withCredentials: true, // Ensures cookies (JWT) are sent with the request
       });
       return response.data;
     },
-    retry: 1,
-    staleTime: 0,
+    retry: false, // Prevents infinite retry loops for authentication errors
   });
 
-  // Redirect to login if user is not authenticated
+  // Redirect to login if authentication fails
   useEffect(() => {
-    if (data===undefined || !data.user) {
-      navigate("/login");
+    if (isError) {
+      navigate("/login"); // Redirect only when error occurs
     }
-  }, [data, navigate]);
+  }, [isError, navigate]);
 
+  // Show loading spinner while checking authentication
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p>Loading...</p>
+      <div className="flex items-center justify-center min-h-screen">
+        <ClipLoader color="blue" size={50} />
       </div>
     );
   }
 
-  if (isError) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-red-500">
-          Error: {error?.message || "Something went wrong"}
-        </p>
-      </div>
-    );
-  }
-
-  if (data?.user) {
-    // Render child components if authenticated
-    return <>{children}</>;
-  }
-
-  // Fallback when navigation is being processed
-  return null;
+  // Render protected content only if authenticated
+  return data ? children : null;
 }
 
 export default AuthCheck;
