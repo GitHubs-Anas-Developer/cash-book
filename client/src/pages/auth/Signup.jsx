@@ -16,7 +16,6 @@ function Signup() {
 
   const navigate = useNavigate();
 
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -47,7 +46,6 @@ function Signup() {
     onSuccess: (response) => {
       toast.success(response.message);
       navigate("/dashboard");
-
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || "Something went wrong!");
@@ -176,12 +174,12 @@ function Signup() {
         </form>
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <a
-            href="/login"
+          <Link
+            to={"/login"}
             className="text-blue-600 hover:underline focus:outline-none"
           >
-            Log in here
-          </a>
+            Sign up here
+          </Link>
         </p>
       </div>
     </div>
