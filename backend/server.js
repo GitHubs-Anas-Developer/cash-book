@@ -37,9 +37,6 @@ app.use(
   })
 );
 
-app.get("/authCheck", protectRoute, (req, res) => {
-  res.status(200).json({ message: "You have access!", user: req.user });
-});
 
 // Route handlers
 app.use("/api/auth", authRoutes);

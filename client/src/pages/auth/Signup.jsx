@@ -61,7 +61,7 @@ function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-teal-400">
+    <div className="fixed inset-0 flex items-center justify-center  p-4">
       <div className="w-full max-w-sm p-6 bg-white shadow-md rounded-lg">
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
           Sign Up
@@ -80,7 +80,7 @@ function Signup() {
               id="username"
               name="username"
               placeholder="Enter your username"
-              className="w-full mt-1 border-gray-300 rounded-md p-3 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
               value={registerForm.username}
               onChange={handleInputChange}
             />
@@ -99,7 +99,7 @@ function Signup() {
               id="email"
               name="email"
               placeholder="Enter your email"
-              className="w-full mt-1 border-gray-300 rounded-md p-3 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
               value={registerForm.email}
               onChange={handleInputChange}
             />
@@ -118,7 +118,7 @@ function Signup() {
               id="password"
               name="password"
               placeholder="Enter your password"
-              className="w-full mt-1 border-gray-300 rounded-md p-3 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
               value={registerForm.password}
               onChange={handleInputChange}
             />
@@ -144,7 +144,7 @@ function Signup() {
               id="confirmPassword"
               name="confirmPassword"
               placeholder="Confirm your password"
-              className="w-full mt-1 border-gray-300 rounded-md p-3 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full mt-1 px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
               value={registerForm.confirmPassword}
               onChange={handleInputChange}
             />
