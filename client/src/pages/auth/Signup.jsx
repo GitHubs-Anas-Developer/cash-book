@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { baseUrl } from "../../constant/Url";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // FaEye for eye, FaEyeSlash for eyeOff
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 function Signup() {
   const [registerForm, setRegisterForm] = useState({
     username: "",
