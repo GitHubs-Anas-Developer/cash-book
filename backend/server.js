@@ -21,6 +21,7 @@ const app = express();
 
 // Middleware for parsing JSON requests
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(
   cors({
@@ -29,7 +30,6 @@ app.use(
   })
 );
 
-app.use(cookieParser());
 
 app.use(
   express.urlencoded({
